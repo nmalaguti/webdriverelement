@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "noEmitOnError": true,
+        "target": "ES5",
+        "rootDir": "src",
+        "outDir": "lib",
+        "declaration": true,
+        "sourceMap": true
+    },
+    "atom": {
+        "rewriteTsconfig": false
+    },
+    "filesGlob": [
+        "typings/tsd.d.ts",
+        "src/**/*.ts"
+    ],
+    "files": [
+        "typings/tsd.d.ts",
+        "src/index.ts"
+    ],
+    "compileOnSave": false
+}
