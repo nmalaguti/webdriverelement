@@ -5,9 +5,7 @@
         "noEmitOnError": true,
         "target": "ES5",
         "rootDir": "src",
-        "outDir": "lib",
-        "declaration": true,
-        "sourceMap": true
+        "outDir": "lib"
     },
     "atom": {
         "rewriteTsconfig": false
@@ -18,6 +16,8 @@
     ],
     "files": [
         "typings/tsd.d.ts",
+        "src/element.ts",
+        "src/getPathWrapper.ts",
         "src/index.ts"
     ],
     "compileOnSave": false

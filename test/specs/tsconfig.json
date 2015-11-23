@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "noEmitOnError": true,
+        "target": "ES6",
+        "rootDir": "src",
+        "outDir": "lib",
+        "experimentalAsyncFunctions": true
+    },
+    "atom": {
+        "rewriteTsconfig": false
+    },
+    "filesGlob": [
+        "../../typings/tsd.test.d.ts",
+        "src/**/*.ts"
+    ],
+    "files": [
+        "../../typings/tsd.test.d.ts",
+        "src/clear.ts",
+        "src/click.ts",
+        "src/client.ts",
+        "src/doubleClick.ts",
+        "src/dragAndDrop.ts",
+        "src/findElement.ts",
+        "src/findElements.ts"
+    ],
+    "compileOnSave": false
+}

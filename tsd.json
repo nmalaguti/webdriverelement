@@ -10,6 +10,21 @@
     },
     "q/Q.d.ts": {
       "commit": "16134c168d021351acb1673ee9659644fc58c424"
+    },
+    "es6-promise/es6-promise.d.ts": {
+      "commit": "0ea013a775ce1fb90c5e41b255e1d038714ffbe5"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "0ea013a775ce1fb90c5e41b255e1d038714ffbe5"
+    },
+    "mocha/mocha.d.ts": {
+      "commit": "fa04c80f4a889613b96cb4f283848c61a9f64233"
+    },
+    "chai/chai.d.ts": {
+      "commit": "fa04c80f4a889613b96cb4f283848c61a9f64233"
+    },
+    "assertion-error/assertion-error.d.ts": {
+      "commit": "fa04c80f4a889613b96cb4f283848c61a9f64233"
     }
   }
 }
