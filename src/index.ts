@@ -7,7 +7,7 @@ import Element from "./element";
 export interface IOptions {
 }
 
-export function init(client: WebdriverIO.IClient<void>, options: IOptions) {
+export function init(client: WebdriverIO.Client<void>, options: IOptions) {
     Element.client = client;
 
     function findElement(selector: string): Promise<Element> {

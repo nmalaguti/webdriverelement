@@ -1,4 +1,4 @@
-// Type definitions for webdriverio 3.2.6
+// Type definitions for webdriverio 3.3.0
 // Project: http://www.webdriver.io/
 // Definitions by: Nick Malaguti <https://github.com/nmalaguti/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -8,139 +8,139 @@
 
 declare namespace WebdriverIO {
     // EventEmitter
-    export interface IClient<T> {
-        addListener(event: string, listener: Function): IClient<T>;
-        on(event: string, listener: Function): IClient<T>;
-        once(event: string, listener: Function): IClient<T>;
-        removeListener(event: string, listener: Function): IClient<T>;
-        removeAllListeners(event?: string): IClient<T>;
-        setMaxListeners(n: number): IClient<T>;
-        listeners(event: string): IClient<T>;
-        emit(event: string, ...args: any[]): IClient<T>;
+    export interface Client<T> {
+        addListener(event: string, listener: Function): Client<T>;
+        on(event: string, listener: Function): Client<T>;
+        once(event: string, listener: Function): Client<T>;
+        removeListener(event: string, listener: Function): Client<T>;
+        removeAllListeners(event?: string): Client<T>;
+        setMaxListeners(n: number): Client<T>;
+        listeners(event: string): Client<T>;
+        emit(event: string, ...args: any[]): Client<T>;
     }
 
     // Promise
-    export interface IClient<T> {
-        call(callback: () => any): IClient<void>;
-        finally(callback: () => any): IClient<T>;
-        then<P>(onFulfilled?: (value: T) => P | IClient<P>, onRejected?: (err: any) => P | IClient<P>): IClient<P>;
-        catch<P>(onRejected?: (err: any) => P | IClient<P>): IClient<P>;
+    export interface Client<T> {
+        call(callback: () => any): Client<void>;
+        finally(callback: () => any): Client<T>;
+        then<P>(onFulfilled?: (value: T) => P | Client<P>, onRejected?: (err: any) => P | Client<P>): Client<P>;
+        catch<P>(onRejected?: (err: any) => P | Client<P>): Client<P>;
         inspect(): Q.PromiseState<T>;
     }
 
     // Action
-    export interface IClient<T> {
-        addValue(selector: string, value: string | number): IClient<void>;
+    export interface Client<T> {
+        addValue(selector: string, value: string | number): Client<void>;
         addValue<P>(
             selector: string,
             value: string | number,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        clearElement(selector: string): IClient<void>;
+        clearElement(selector: string): Client<void>;
         clearElement<P>(
             selector: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        click(selector: string): IClient<void>;
+        click(selector: string): Client<void>;
         click<P>(
             selector: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        doubleClick(selector: string): IClient<void>;
+        doubleClick(selector: string): Client<void>;
         doubleClick<P>(
             selector: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        dragAndDrop(sourceElem: string, destinationElem: string): IClient<void>;
+        dragAndDrop(sourceElem: string, destinationElem: string): Client<void>;
         dragAndDrop<P>(
             sourceElem: string,
             destinationElem: string, callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        leftClick(selector: string): IClient<void>;
+        leftClick(selector: string): Client<void>;
         leftClick<P>(
             selector: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        middleClick(selector: string): IClient<void>;
+        middleClick(selector: string): Client<void>;
         middleClick<P>(
             selector: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        moveToObject(selector: string): IClient<void>;
-        moveToObject(selector: string, xoffset: number, yoffset: number): IClient<void>;
+        moveToObject(selector: string): Client<void>;
+        moveToObject(selector: string, xoffset: number, yoffset: number): Client<void>;
         moveToObject<P>(
             selector: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
         moveToObject<P>(
             selector: string,
             xoffset: number,
             yoffset: number,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        rightClick(selector: string): IClient<void>;
+        rightClick(selector: string): Client<void>;
         rightClick<P>(
             selector: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        selectByIndex(selectElem: string, index: number): IClient<any>;
+        selectByIndex(selectElem: string, index: number): Client<void>;
         selectByIndex<P>(
             selectElem: string,
             index: number,
-            callback: (err: any, elem: any) => P
-        ): IClient<P>;
+            callback: (err: any) => P
+        ): Client<P>;
 
-        selectByValue(selectElem: string, value: string): IClient<any>;
+        selectByValue(selectElem: string, value: string): Client<void>;
         selectByValue<P>(
             selectElem: string,
             value: string,
-            callback: (err: any, elem: any) => P
-        ): IClient<P>;
+            callback: (err: any) => P
+        ): Client<P>;
 
-        selectByVisibleText(selectElem: string, text: string): IClient<any>;
+        selectByVisibleText(selectElem: string, text: string): Client<void>;
         selectByVisibleText<P>(
             selectElem: string,
             text: string,
-            callback: (err: any, elem: any) => P
-        ): IClient<P>;
+            callback: (err: any) => P
+        ): Client<P>;
 
         selectorExecute<P>(
             selectors: string | string[],
-            script: (elements: any[], ...args: any[]) => P,
+            script: (elements: HTMLElement | HTMLElement[], ...args: any[]) => P,
             ...args: any[]
-        ): IClient<P>;
+        ): Client<P>;
 
         selectorExecuteAsync<P>(
             selectors: string | string[],
-            script: (elements: any[], ...args: any[]) => P,
+            script: (elements: HTMLElement | HTMLElement[], ...args: any[]) => P,
             ...args: any[]
-        ): IClient<P>;
+        ): Client<P>;
 
-        setValue(selector: string, values: number | string | Array<string>): IClient<void>;
+        setValue(selector: string, values: number | string | Array<string>): Client<void>;
         setValue<P>(
             selector: string,
             values: number | string | Array<string>,
             callback: (err: any) => P
-        ): IClient<void>;
+        ): Client<void>;
 
-        submitForm(selector: string): IClient<void>;
+        submitForm(selector: string): Client<void>;
         submitForm<P>(
             selector: string,
             callback: (err: any) => P
-        ): IClient<void>;
+        ): Client<void>;
     }
 
     // Appium
-    export interface IClient<T> {
+    export interface Client<T> {
         // backgroundApp
         // closeApp
         // context
@@ -171,41 +171,41 @@ declare namespace WebdriverIO {
         // toggleWiFiOnDevice
     }
 
-    export interface ICookie {
+    export interface Cookie {
         name: string;
         value: string;
     }
 
     // Cookie
-    export interface IClient<T> {
-        deleteCookie(name?: string): IClient<void>;
+    export interface Client<T> {
+        deleteCookie(name?: string): Client<void>;
         deleteCookie<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
         deleteCookie<P>(
             name: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getCookie(): IClient<ICookie[]>;
-        getCookie(name: string): IClient<ICookie>;
+        getCookie(): Client<Cookie[]>;
+        getCookie(name: string): Client<Cookie>;
         getCookie<P>(
-            callback: (err: any, cookies: ICookie[]) => P
-        ): IClient<P>;
+            callback: (err: any, cookies: Cookie[]) => P
+        ): Client<P>;
         getCookie<P>(
             name: string,
-            callback: (err: any, cookie: ICookie) => P
-        ): IClient<P>;
+            callback: (err: any, cookie: Cookie) => P
+        ): Client<P>;
 
-        setCookie(cookie: ICookie): IClient<void>;
+        setCookie(cookie: Cookie): Client<void>;
         setCookie<P>(
-            cookie: ICookie,
+            cookie: Cookie,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
     }
 
     // Mobile
-    export interface IClient<T> {
+    export interface Client<T> {
         // flick
         // flickDown
         // flickLeft
@@ -220,13 +220,13 @@ declare namespace WebdriverIO {
         // touch
     }
 
-    export interface ICssProperty {
+    export interface CssProperty {
         property: string;
         value: string;
-        parsed: IParsedCssProperty;
+        parsed: ParsedCssProperty;
     }
 
-    export interface IParsedCssProperty {
+    export interface ParsedCssProperty {
         type: string;
         string: string;
         quote: string;
@@ -234,105 +234,112 @@ declare namespace WebdriverIO {
         value: string | number | string[] | number[];
     }
 
-    export interface ISize {
+    export interface Size {
         width: number;
         height: number;
     }
 
-    export interface ILocation {
+    export interface Location {
         x: number;
         y: number;
     }
 
     // Property
-    export interface IClient<T> {
-        getAttribute(selector: string, attributeName: string): IClient<string | string[]>;
+    export interface Client<T> {
+        getAttribute(selector: string, attributeName: string): Client<string | string[]>;
         getAttribute<P>(
             selector: string,
             attributeName: string,
             callback: (err: any, attribute: string | string[]) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getCssProperty(selector: string, cssProperty: string): IClient<ICssProperty | ICssProperty[]>;
+        getCssProperty(selector: string, cssProperty: string): Client<CssProperty | CssProperty[]>;
         getCssProperty<P>(
             selector: string,
             cssProperty: string,
-            callback: (err: any, cssProperty: ICssProperty | ICssProperty[]) => P
-        ): IClient<P>;
+            callback: (err: any, cssProperty: CssProperty | CssProperty[]) => P
+        ): Client<P>;
 
-        getElementSize(selector: string): IClient<ISize | ISize[]>;
-        getElementSize(selector: string, dimension: string): IClient<number | number[]>;
+        getElementSize(selector: string): Client<Size | Size[]>;
+        getElementSize(selector: string, dimension: string): Client<number | number[]>;
         getElementSize<P>(
             selector: string,
-            callback: (err: any, size: ISize | ISize[]) => P
-        ): IClient<P>;
+            callback: (err: any, size: Size | Size[]) => P
+        ): Client<P>;
         getElementSize<P>(
             selector: string,
             dimension: string,
             callback: (err: any, elementSize: number | number[]) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getHTML(selector: string, includeSelectorTag?: boolean): IClient<string | string[]>;
+        getHTML(selector: string, includeSelectorTag?: boolean): Client<string | string[]>;
         getHTML<P>(
             selector: string,
             callback: (err: any, html: string | string[]) => P
-        ): IClient<P>;
+        ): Client<P>;
         getHTML<P>(
             selector: string,
             includeSelectorTag: boolean,
             callback: (err: any, html: string | string[]) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getLocation(selector: string): IClient<ISize>;
-        getLocation(selector: string, axis: string): IClient<number>;
+        getLocation(selector: string): Client<Size>;
+        getLocation(selector: string, axis: string): Client<number>;
         getLocation<P>(
             selector: string,
-            callback: (err: any, size: ISize) => P
-        ): IClient<P>;
+            callback: (err: any, size: Size) => P
+        ): Client<P>;
         getLocation<P>(
             selector: string,
             axis: string,
             callback: (err: any, location: number) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getLocationInView(selector: string): IClient<ISize | ISize[]>;
-        getLocationInView(selector: string, axis: string): IClient<number | number[]>;
+        getLocationInView(selector: string): Client<Size | Size[]>;
+        getLocationInView(selector: string, axis: string): Client<number | number[]>;
         getLocationInView<P>(
             selector: string,
-            callback: (err: any, size: ISize | ISize[]) => P
-        ): IClient<P>;
+            callback: (err: any, size: Size | Size[]) => P
+        ): Client<P>;
         getLocationInView<P>(
             selector: string,
             axis: string,
             callback: (err: any, location: number | number[]) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getSource(): IClient<string>;
-        getSource<P>(callback: (err: any, source: string) => P): IClient<P>;
+        getSource(): Client<string>;
+        getSource<P>(callback: (err: any, source: string) => P): Client<P>;
 
-        getTagName(selector: string): IClient<string | string[]>;
+        getTagName(selector: string): Client<string | string[]>;
         getTagName<P>(
             selector: string,
             callback: (err: any, tagName: string | string[]) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getText(selector: string): IClient<string | string[]>;
+        getText(selector: string): Client<string | string[]>;
         getText<P>(
             selector: string,
             callback: (err: any, text: string | string[]) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getTitle(): IClient<string>;
-        getTitle<P>(callback: (err: any, title: string) => P): IClient<P>;
+        getTitle(): Client<string>;
+        getTitle<P>(
+            callback: (err: any, title: string) => P
+        ): Client<P>;
 
-        getValue(selector: string): IClient<string | string[]>;
+        getUrl(): Client<string>;
+        getUrl<P>(
+            callback: (err: any, title: string) => P
+        ): Client<P>;
+
+        getValue(selector: string): Client<string | string[]>;
         getValue<P>(
             selector: string,
             callback: (err: any, value: string | string[]) => P
-        ): IClient<P>;
+        ): Client<P>;
     }
 
-    export interface ILogEntry {
+    export interface LogEntry {
         timestamp: number;
         level: string;
         message: string;
@@ -353,107 +360,118 @@ declare namespace WebdriverIO {
         right = 2
     }
 
-    export interface IStorageItem {
+    export interface StorageItem {
         key: string;
         value: any;
     }
 
-    export interface ILocation {
+    export interface Location {
         latitude: number;
         longitude: number;
         altitude: number;
     }
 
-    export interface ISession {
+    export interface Session {
         id: string;
         capabilities: any;
     }
 
-    export interface IRawResult<T> {
+    export interface RawResult<T> {
         value: T;
     }
 
     // Navigation
-    export interface IClient<T> {
-        back(): IClient<void>;
+    export interface Client<T> {
+        back(): Client<void>;
         back<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        forward(): IClient<void>;
+        forward(): Client<void>;
         forward<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        refresh(): IClient<void>;
+        refresh(): Client<void>;
         refresh<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        url(): IClient<IRawResult<string>>;
-        url(url: string): IClient<void>;
+        url(): Client<RawResult<string>>;
+        url(url: string): Client<void>;
         url<P>(
-            callback: (err: any, result: IRawResult<string>) => P
-        ): IClient<P>;
+            callback: (err: any, result: RawResult<string>) => P
+        ): Client<P>;
         url<P>(
             url: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
     }
 
     // Advanced input
-    export interface IClient<T> {
+    export interface Client<T> {
         // you probably want to use the click and drag and drop commands instead
-        buttonDown(button: string | Button): IClient<void>;
+        buttonDown(button?: string | Button): Client<void>;
+        buttonDown<P>(
+            callback: (err: any) => P
+        ): Client<P>;
         buttonDown<P>(
             button: string | Button,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
         // you probably want to use the click and drag and drop commands instead
-        buttonPress(button: string | Button): IClient<void>;
+        buttonPress(button?: string | Button): Client<void>;
+        buttonPress<P>(
+            callback: (err: any) => P
+        ): Client<P>;
         buttonPress<P>(
             button: string | Button,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
         // you probably want to use the click and drag and drop commands instead
-        buttonUp(button: string | Button): IClient<void>;
+        buttonUp(button?: string | Button): Client<void>;
+        buttonUp<P>(
+            callback: (err: any) => P
+        ): Client<P>;
+        buttonUp(button?: string | Button): Client<void>;
         buttonUp<P>(
             button: string | Button,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
         // you probably want to use the click and drag and drop commands instead
-        doDoubleClick(): IClient<void>;
+        doDoubleClick(): Client<void>;
         doDoubleClick<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
         // you probably want to use addValue and setValue instead
-        keys(value: string | string[]): IClient<void>;
+        keys(value: string | string[]): Client<void>;
         keys<P>(
             value: string | string[],
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
         // you probably want to use the moveToObject command instead
-        moveTo(selector: string, xoffset?: number, yoffset?: number): IClient<void>;
+        moveTo(id: ElementId, xoffset?: number, yoffset?: number): Client<void>;
+        moveTo(xoffset?: number, yoffset?: number): Client<void>;
         moveTo<P>(
-            selector: string,
+            id: ElementId,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
         moveTo<P>(
-            selector: string,
+            id: ElementId,
             xoffset: number,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
         moveTo<P>(
-            selector: string,
+            id: ElementId,
             xoffset: number,
             yoffset: number,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
         // touchClick
         // touchDoubleClick
@@ -466,75 +484,75 @@ declare namespace WebdriverIO {
     }
 
     // Useful Protocol
-    export interface IClient<T> {
-        alertAccept(): IClient<void>;
+    export interface Client<T> {
+        alertAccept(): Client<void>;
         alertAccept<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        alertDismiss(): IClient<void>;
+        alertDismiss(): Client<void>;
         alertDismiss<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        alertText(text?: string): IClient<string>;
+        alertText(text?: string): Client<string>;
         alertText<P>(
             callback: (err: any, text: string) => P
-        ): IClient<P>;
+        ): Client<P>;
         alertText<P>(
             text: string,
             callback: (err: any, text: string) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        frame(id: any): IClient<void>;
+        frame(id: any): Client<void>;
         frame<P>(
             id: any,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        frameParent(): IClient<void>;
+        frameParent(): Client<void>;
         frameParent<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        init(capabilities?: IDesiredCapabilities): IClient<void>;
+        init(capabilities?: DesiredCapabilities): Client<void>;
         init<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
         init<P>(
-            capabilities: IDesiredCapabilities,
+            capabilities: DesiredCapabilities,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        log(type: string): IClient<IRawResult<ILogEntry[]>>;
+        log(type: string): Client<RawResult<LogEntry[]>>;
         log<P>(
             type: string,
-            callback: (err: any, result: IRawResult<ILogEntry[]>) => P
-        ): IClient<P>;
+            callback: (err: any, result: RawResult<LogEntry[]>) => P
+        ): Client<P>;
 
-        logTypes(): IClient<IRawResult<string[]>>;
+        logTypes(): Client<RawResult<string[]>>;
         logTypes<P>(
-            callback: (err: any, result: IRawResult<string[]>) => P
-        ): IClient<P>;
+            callback: (err: any, result: RawResult<string[]>) => P
+        ): Client<P>;
 
-        session(action?: string, sessionId?: string): IClient<IRawResult<any>>;
+        session(action?: string, sessionId?: string): Client<RawResult<any>>;
         session<P>(
-            callback: (err: any, result: IRawResult<any>) => P
-        ): IClient<P>;
+            callback: (err: any, result: RawResult<any>) => P
+        ): Client<P>;
         session<P>(
             action: string,
-            callback: (err: any, result: IRawResult<any>) => P
-        ): IClient<P>;
+            callback: (err: any, result: RawResult<any>) => P
+        ): Client<P>;
         session<P>(
             action: string,
             sessionId: string,
-            callback: (err: any, result: IRawResult<any>) => P
-        ): IClient<P>;
+            callback: (err: any, result: RawResult<any>) => P
+        ): Client<P>;
 
-        sessions(): IClient<IRawResult<ISession[]>>;
+        sessions(): Client<RawResult<Session[]>>;
         sessions<P>(
-            callback: (err: any, sessions: IRawResult<ISession[]>) => P
-        ): IClient<P>;
+            callback: (err: any, sessions: RawResult<Session[]>) => P
+        ): Client<P>;
 
         // timeouts
         // timeoutsAsyncScript
@@ -548,612 +566,498 @@ declare namespace WebdriverIO {
         // windowHandles
     }
 
+    export type ElementId = string;
+
+    export interface Element {
+        ELEMENT: ElementId;
+    }
+
     // Element
-    export interface IClient<T> {
-        element(selector: string): IClient<IRawResult<any>>;
+    export interface Client<T> {
+        element(selector: string): Client<RawResult<Element>>;
         element<P>(
             selector: string,
-            callback: (err: any, result: IRawResult<any>) => P
-        ): IClient<P>;
+            callback: (err: any, result: RawResult<Element>) => P
+        ): Client<P>;
 
-        // elementActive(): IClient<IRawResult<any>>;
-        // elementActive<P>(
-        //     callback: (err: any, element: any) => P
-        // ): IClient<P>;
-        //
-        // elementIdAttribute(id: string, attributeName: string): IClient<IRawResult<string>>;
-        // elementIdAttribute<P>(
-        //     id: string,
-        //     attributeName: string,
-        //     callback: (err: any, result: IRawResult<string>) => P
-        // ): IClient<P>;
+        elementActive(): Client<RawResult<Element>>;
+        elementActive<P>(
+            callback: (err: any, element: Element) => P
+        ): Client<P>;
 
-        // elementIdClear
-        // elementIdClick
-        // elementIdCssProperty
-        // elementIdDisplayed
-        // elementIdElement
-        // elementIdElements
-        // elementIdEnabled
-        // elementIdLocation
-        // elementIdLocationInView
-        // elementIdName
-        // elementIdSelected
-        // elementIdSize
-        // elementIdText
-        // elementIdValue
+        elementIdAttribute(id: ElementId, attributeName: string): Client<RawResult<string>>;
+        elementIdAttribute<P>(
+            id: ElementId,
+            attributeName: string,
+            callback: (err: any, result: RawResult<string>) => P
+        ): Client<P>;
 
-        elements(selector: string): IClient<IRawResult<any[]>>;
+        elementIdClear(id: ElementId): Client<void>;
+        elementIdClear<P>(
+            id: ElementId,
+            callback: (err: any) => P
+        ): Client<P>;
+
+        elementIdClick(id: ElementId): Client<void>;
+        elementIdClick<P>(
+            id: ElementId,
+            callback: (err: any) => P
+        ): Client<P>;
+
+        elementIdCssProperty(id: ElementId, propertyName: string): Client<RawResult<string>>;
+        elementIdCssProperty<P>(
+            id: ElementId,
+            propertyName: string,
+            callback: (err: any, result: RawResult<string>) => P
+        ): Client<P>;
+
+        elementIdDisplayed(id: ElementId): Client<RawResult<boolean>>;
+        elementIdDisplayed<P>(
+            id: ElementId,
+            callback: (err: any, result: RawResult<boolean>) => P
+        ): Client<P>;
+
+        elementIdElement(id: ElementId, selector: string): Client<RawResult<Element>>;
+        elementIdElement<P>(
+            id: ElementId,
+            selector: string,
+            callback: (err: any, result: RawResult<Element>) => P
+        ): Client<P>;
+
+        elementIdElements(id: ElementId, selector: string): Client<RawResult<Element[]>>;
+        elementIdElements<P>(
+            id: ElementId,
+            selector: string,
+            callback: (err: any, result: RawResult<Element[]>) => P
+        ): Client<P>;
+
+        elementIdEnabled(id: ElementId): Client<RawResult<boolean>>;
+        elementIdEnabled<P>(
+            id: ElementId,
+            callback: (err: any, result: RawResult<boolean>) => P
+        ): Client<P>;
+
+        elementIdLocation(id: ElementId): Client<RawResult<Location>>;
+        elementIdLocation<P>(
+            id: ElementId,
+            callback: (err: any, result: RawResult<Location>) => P
+        ): Client<P>;
+
+        elementIdLocationInView(id: ElementId): Client<RawResult<Location>>;
+        elementIdLocationInView<P>(
+            id: ElementId,
+            callback: (err: any, result: RawResult<Location>) => P
+        ): Client<P>;
+
+        elementIdName(id: ElementId): Client<RawResult<string>>;
+        elementIdName<P>(
+            id: ElementId,
+            callback: (err: any, result: RawResult<string>) => P
+        ): Client<P>;
+
+        elementIdSelected(id: ElementId): Client<RawResult<boolean>>;
+        elementIdSelected<P>(
+            id: ElementId,
+            callback: (err: any, result: RawResult<boolean>) => P
+        ): Client<P>;
+
+        elementIdSize(id: ElementId): Client<RawResult<Size>>;
+        elementIdSize<P>(
+            id: ElementId,
+            callback: (err: any, result: RawResult<Size>) => P
+        ): Client<P>;
+
+        elementIdText(id: ElementId): Client<RawResult<string>>;
+        elementIdText<P>(
+            id: ElementId,
+            callback: (err: any, result: RawResult<string>) => P
+        ): Client<P>;
+
+        elementIdValue(id: ElementId, values: string | string[]): Client<RawResult<void>>;
+        elementIdValue<P>(
+            id: ElementId,
+            values: string | string[],
+            callback: (err: any, result: RawResult<void>) => P
+        ): Client<P>;
+
+        elements(selector: string): Client<RawResult<Element[]>>;
         elements<P>(
             selector: string,
-            callback: (err: any, result: IRawResult<any[]>) => P
-        ): IClient<P>;
+            callback: (err: any, result: RawResult<Element[]>) => P
+        ): Client<P>;
     }
 
     // Unuseful Protocol
-    export interface IClient<T> {
-        // applicationCacheStatus(): IClient<IRawResult<ApplicationCacheStatus>>;
-        // applicationCacheStatus<P>(
-        //     callback: (err: any, result: IRawResult<ApplicationCacheStatus>) => P
-        // ): IClient<P>;
-
-        // use getCookie, setCookie, or deleteCookie instead
-        // cookie(): IClient<ICookie[]>;
-        // cookie(method: string, cookie: string): IClient<ICookie>;
-        // cookie(method: string, cookie: ICookie): IClient<void>;
-        // cookie<P>(
-        //     callback: (err: any, cookies: ICookie[]) => P
-        // ): IClient<P>;
-        // cookie<P>(
-        //     method: string,
-        //     cookie: string,
-        //     callback: (err: any, cookie: ICookie) => P
-        // ): IClient<P>;
-        // cookie<P>(
-        //     method: string,
-        //     cookie: ICookie,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
+    export interface Client<T> {
+        // applicationCacheStatus
+        // cookie
 
         // use selectorExecute instead
-        // execute(script: string | Function, ...args: any[]): IClient<IRawResult<any>>;
+        execute(script: string | Function, ...args: any[]): Client<RawResult<any>>;
 
         // use selectorExecuteAsync instead
-        // executeAsync(script: string | Function, ...args: any[]): IClient<IRawResult<any>>;
+        executeAsync(script: string | Function, ...args: any[]): Client<RawResult<any>>;
 
-        // use uploadFile instead
-        // file(base64data: string): IClient<void>;
-        // file<P>(
-        //     base64data: string,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-
-        // imeActivate(engine: string): IClient<void>;
-        // imeActivate<P>(
-        //     engine: string,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-        //
-        // imeActivated(): IClient<boolean>;
-        // imeActivated<P>(
-        //     callback: (err: any, imeActivated: boolean) => P
-        // ): IClient<P>;
-        //
-        // imeActiveEngine(): IClient<string>;
-        // imeActiveEngine<P>(
-        //     callback: (err: any, imeActiveEngine: string) => P
-        // ): IClient<P>;
-        //
-        // imeAvailableEngines(): IClient<string[]>;
-        // imeAvailableEngines<P>(
-        //     callback: (err: any, imeAvailableEngines: string[]) => P
-        // ): IClient<P>;
-        //
-        // imeDeactivated(): IClient<void>;
-        // imeDeactivated<P>(
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-
-        // // GET all
-        // localStorage(): IClient<IRawResult<string[]>>;
-        // // DELETE all
-        // localStorage(method: string): IClient<void>;
-        // localStorage(method: "DELETE", key: string): IClient<void>;
-        // localStorage(method: string, key: string): IClient<void>;
-        // localStorage(method: "GET", key: string): IClient<IRawResult<string>>;
-        // localStorage(method: string, key: string): IClient<IRawResult<string>>;
-        // // POST
-        // localStorage(method: string, entry: IStorageItem): IClient<void>;
-        // // GET all
-        // localStorage<P>(
-        //     callback: (err: any, result: IRawResult<string[]>) => P
-        // ): IClient<P>;
-        // // DELETE all
-        // localStorage<P>(
-        //     method: string,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-        // localStorage<P>(
-        //     method: "DELETE",
-        //     key: string,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-        // localStorage<P>(
-        //     method: string,
-        //     key: string,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-        // localStorage<P>(
-        //     method: "GET",
-        //     key: string,
-        //     callback: (err: any, result: IRawResult<string>) => P
-        // ): IClient<P>;
-        // localStorage<P>(
-        //     method: string,
-        //     key: string,
-        //     callback: (err: any, result: IRawResult<string>) => P
-        // ): IClient<P>;
-        // // POST
-        // localStorage<P>(
-        //     method: string,
-        //     entry: IStorageItem,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-        //
-        // localStorageSize(): IClient<IRawResult<number>>;
-        // localStorageSize<P>(
-        //     callback: (err: any, result: IRawResult<number>) => P
-        // ): IClient<P>;
-
-        // use getGeoLocation and setGeoLocation instead
-        // location(): IClient<IRawResult<ILocation>>;
-        // location(location: ILocation): IClient<void>;
-        // location<P>(
-        //     callback: (err: any, result: IRawResult<ILocation>) => P
-        // ): IClient<P>;
-        // location<P>(
-        //     location: ILocation,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-
-        // use getOrientation and setOrientation instead
-        // orientation(): IClient<IRawResult<string>>;
-        // orientation(orientation: string): IClient<void>;
-        // orientation<P>(
-        //     callback: (err: any, result: IRawResult<string>) => P
-        // ): IClient<P>;
-        // orientation<P>(
-        //     orientation: string,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-
-        // use saveScreenshot instead
-        // screenshot(): IClient<IRawResult<string>>;
-        // screenshot<P>(
-        //     callback: (err: any, result: IRawResult<string>) => P
-        // ): IClient<P>;
-
-        //
-        // // GET all
-        // sessionStorage(): IClient<IRawResult<string[]>>;
-        // // DELETE all
-        // sessionStorage(method: string): IClient<void>;
-        // sessionStorage(method: "DELETE", key: string): IClient<void>;
-        // sessionStorage(method: string, key: string): IClient<void>;
-        // sessionStorage(method: "GET", key: string): IClient<IRawResult<string>>;
-        // sessionStorage(method: string, key: string): IClient<IRawResult<string>>;
-        // // POST
-        // sessionStorage(method: string, entry: IStorageItem): IClient<void>;
-        // // GET all
-        // sessionStorage<P>(
-        //     callback: (err: any, result: IRawResult<string[]>) => P
-        // ): IClient<P>;
-        // // DELETE all
-        // sessionStorage<P>(
-        //     method: string,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-        // sessionStorage<P>(
-        //     method: "DELETE",
-        //     key: string,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-        // sessionStorage<P>(
-        //     method: string,
-        //     key: string,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-        // sessionStorage<P>(
-        //     method: "GET",
-        //     key: string,
-        //     callback: (err: any, result: IRawResult<string>) => P
-        // ): IClient<P>;
-        // sessionStorage<P>(
-        //     method: string,
-        //     key: string,
-        //     callback: (err: any, result: IRawResult<string>) => P
-        // ): IClient<P>;
-        // // POST
-        // sessionStorage<P>(
-        //     method: string,
-        //     entry: IStorageItem,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
-        //
-        // sessionStorageSize(): IClient<number>;
-        // sessionStorageSize<P>(
-        //     callback: (err: any, size: number) => P
-        // ): IClient<P>;
-        //
-
+        // file
+        // imeActivate
+        // imeActivated
+        // imeActiveEngine
+        // imeAvailableEngines
+        // imeDeactivated
+        // localStorage
+        // localStorageSize
+        // location
+        // orientation
+        // screenshot
+        // sessionStorage
+        // sessionStorageSize
         // source
         // status
 
         // use submitForm instead
-        // submit(id: string): IClient<void>;
-        // submit<P>(
-        //     id: string,
-        //     callback: (err: any) => P
-        // ): IClient<P>;
+        submit(id: ElementId): Client<void>;
+        submit<P>(
+            id: ElementId,
+            callback: (err: any) => P
+        ): Client<P>;
 
         // title
     }
 
     // State
-    export interface IClient<T> {
-        isEnabled(selector: string): IClient<boolean>;
+    export interface Client<T> {
+        isEnabled(selector: string): Client<boolean>;
         isEnabled<P>(
             selector: string,
             callback: (err: any, isEnabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        isExisting(selector: string): IClient<boolean>;
+        isExisting(selector: string): Client<boolean>;
         isExisting<P>(
             selector: string,
             callback: (err: any, isExisting: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        isSelected(selector: string): IClient<boolean>;
+        isSelected(selector: string): Client<boolean>;
         isSelected<P>(
             selector: string,
             callback: (err: any, isSelected: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        isVisible(selector: string): IClient<boolean>;
+        isVisible(selector: string): Client<boolean>;
         isVisible<P>(
             selector: string,
             callback: (err: any, isVisible: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        isVisibleWithinViewport(selector: string): IClient<boolean>;
+        isVisibleWithinViewport(selector: string): Client<boolean>;
         isVisibleWithinViewport<P>(
             selector: string,
             callback: (err: any, isVisible: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
     }
 
-    export interface ICommandHistoryEntry {
+    export interface CommandHistoryEntry {
         command: string;
         args: any[];
     }
 
     // Utility
-    export interface IClient<T> {
-        addCommand(commandName: string, customMethod: Function, overwrite?: boolean): IClient<void>;
+    export interface Client<T> {
+        addCommand(commandName: string, customMethod: Function, overwrite?: boolean): Client<void>;
         addCommand<P>(
             commandName: string,
             customMethod: Function,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
         addCommand<P>(
             commandName: string,
             customMethod: Function,
             overwrite: boolean,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        chooseFile(selector: string, localPath: string): IClient<void>;
+        chooseFile(selector: string, localPath: string): Client<void>;
         chooseFile<P>(
             selector: string,
             localPath: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        debug(): IClient<void>;
+        debug(): Client<void>;
         debug<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        end(): IClient<void>;
+        end(): Client<void>;
         end<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        endAll(): IClient<void>;
+        endAll(): Client<void>;
         endAll<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getCommandHistory(): IClient<ICommandHistoryEntry[]>;
+        getCommandHistory(): Client<CommandHistoryEntry[]>;
         getCommandHistory<P>(
-            callback: (err: any, history: ICommandHistoryEntry[]) => P
-        ): IClient<P>;
+            callback: (err: any, history: CommandHistoryEntry[]) => P
+        ): Client<P>;
 
-        pause(milliseconds: number): IClient<void>;
-        pause<P>(milliseconds: number, callback: (err: any) => P): IClient<P>;
+        pause(milliseconds: number): Client<void>;
+        pause<P>(milliseconds: number, callback: (err: any) => P): Client<P>;
 
-        saveScreenshot(filename?: string): IClient<Buffer>;
+        saveScreenshot(filename?: string): Client<Buffer>;
         saveScreenshot<P>(
             callback: (err: any, screenshot: Buffer) => P
-        ): IClient<P>;
+        ): Client<P>;
         saveScreenshot<P>(
             filename: string,
             callback: (err: any, screenshot: Buffer) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        scroll(selector: string): IClient<void>;
-        scroll(selector: string, xoffset: number, yoffset: number): IClient<void>;
-        scroll(xoffset: number, yoffset: number): IClient<void>;
+        scroll(selector: string): Client<void>;
+        scroll(selector: string, xoffset: number, yoffset: number): Client<void>;
+        scroll(xoffset: number, yoffset: number): Client<void>;
         scroll<P>(
             selector: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
         scroll<P>(
             selector: string,
             xoffset: number,
             yoffset: number,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
         scroll<P>(
             xoffset: number,
             yoffset: number,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        uploadFile(localPath: string): IClient<void>;
+        uploadFile(localPath: string): Client<void>;
         uploadFile<P>(
             localPath: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        waitForEnabled(selector: string, milliseconds?: number, reverse?: boolean): IClient<boolean>;
+        waitForEnabled(selector: string, milliseconds?: number, reverse?: boolean): Client<boolean>;
         waitForEnabled<P>(
             selector: string,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForEnabled<P>(
             selector: string,
             milliseconds: number,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForEnabled<P>(
             selector: string,
             milliseconds: number,
             reverse: boolean,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        waitForExist(selector: string, milliseconds?: number, reverse?: boolean): IClient<boolean>;
+        waitForExist(selector: string, milliseconds?: number, reverse?: boolean): Client<boolean>;
         waitForExist<P>(
             selector: string,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForExist<P>(
             selector: string,
             milliseconds: number,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForExist<P>(
             selector: string,
             milliseconds: number,
             reverse: boolean,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        waitForSelected(selector: string, milliseconds?: number, reverse?: boolean): IClient<boolean>;
+        waitForSelected(selector: string, milliseconds?: number, reverse?: boolean): Client<boolean>;
         waitForSelected<P>(
             selector: string,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForSelected<P>(
             selector: string,
             milliseconds: number,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForSelected<P>(
             selector: string,
             milliseconds: number,
             reverse: boolean,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        waitForText(selector: string, milliseconds?: number, reverse?: boolean): IClient<boolean>;
+        waitForText(selector: string, milliseconds?: number, reverse?: boolean): Client<boolean>;
         waitForText<P>(
             selector: string,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForText<P>(
             selector: string,
             milliseconds: number,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForText<P>(
             selector: string,
             milliseconds: number,
             reverse: boolean,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        waitForValue(selector: string, milliseconds?: number, reverse?: boolean): IClient<boolean>;
+        waitForValue(selector: string, milliseconds?: number, reverse?: boolean): Client<boolean>;
         waitForValue<P>(
             selector: string,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForValue<P>(
             selector: string,
             milliseconds: number,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForValue<P>(
             selector: string,
             milliseconds: number,
             reverse: boolean,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        waitForVisible(selector: string, milliseconds?: number, reverse?: boolean): IClient<boolean>;
+        waitForVisible(selector: string, milliseconds?: number, reverse?: boolean): Client<boolean>;
         waitForVisible<P>(
             selector: string,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForVisible<P>(
             selector: string,
             milliseconds: number,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitForVisible<P>(
             selector: string,
             milliseconds: number,
             reverse: boolean,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
 
         waitUntil(
             condition: () => boolean | Q.IPromise<boolean>,
             timeout?: number,
             interval?: number
-        ): IClient<boolean>;
+        ): Client<boolean>;
         waitUntil<P>(
             condition: () => boolean | Q.IPromise<boolean>,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitUntil<P>(
             condition: () => boolean | Q.IPromise<boolean>,
             timeout: number,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
         waitUntil<P>(
             condition: () => boolean | Q.IPromise<boolean>,
             timeout: number,
             interval: number,
             callback: (err: any, enabled: boolean) => P
-        ): IClient<P>;
+        ): Client<P>;
     }
 
     // Window
-    export interface IClient<T> {
-        close(windowHandle?: string): IClient<void>;
+    export interface Client<T> {
+        close(windowHandle?: string): Client<void>;
         close<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
         close<P>(
             windowHandle: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getCurrentTabId(): IClient<string>;
+        getCurrentTabId(): Client<string>;
         getCurrentTabId<P>(
             callback: (err: any, tabId: string) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getTabIds(): IClient<string[]>;
+        getTabIds(): Client<string[]>;
         getTabIds<P>(
             callback: (err: any, tabIds: string[]) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        getViewportSize(): IClient<ISize>;
-        getViewportSize(dimension: string): IClient<number>;
+        getViewportSize(): Client<Size>;
+        getViewportSize(dimension: string): Client<number>;
         getViewportSize<P>(
-            callback: (err: any, size: ISize) => P
-        ): IClient<P>;
+            callback: (err: any, size: Size) => P
+        ): Client<P>;
         getViewportSize<P>(
             dimension: string,
             callback: (err: any, viewportSize: number) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        newWindow(url: string, windowName: string, windowFeatures: string): IClient<string>;
+        newWindow(url: string, windowName: string, windowFeatures: string): Client<string>;
         newWindow<P>(
             url: string,
             windowName: string,
             windowFeatures: string,
             callback: (err: any, windowId: string) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        setViewportSize(size: ISize, type: boolean): IClient<void>;
+        setViewportSize(size: Size, type: boolean): Client<void>;
         setViewportSize<P>(
-            size: ISize,
+            size: Size,
             type: boolean,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
 
-        switchTab(windowHandle?: string): IClient<void>;
+        switchTab(windowHandle?: string): Client<void>;
         switchTab<P>(
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
         switchTab<P>(
             windowHandle: string,
             callback: (err: any) => P
-        ): IClient<P>;
+        ): Client<P>;
     }
 
-    export interface IOptions {
+    export interface Options {
         protocol: string;
         waitforTimeout: number;
         coloredLogs: boolean;
         logLevel: string;
         baseUrl: string;
-        desiredCapabilities: IDesiredCapabilities;
+        desiredCapabilities: DesiredCapabilities;
         screenshotPath: string;
     }
 
     // Options
-    export interface IClient<T> {
-        options: IOptions;
+    export interface Client<T> {
+        options: Options;
     }
 
-    export interface IDesiredCapabilities {
-        browserName?: string;
-        version?: string;
-        javascriptEnabled?: boolean;
-        databaseEnabled?: boolean;
-        applicationCacheEnabled?: boolean;
-        browserConnectionEnabled?: boolean;
-        webStorageEnabled?: boolean;
-        acceptSslCerts?: boolean;
-        rotatable?: boolean;
-        nativeEvents?: boolean;
-        unexpectedAlertBehaviour?: string;
-        elementScrollBehavior?: number;
-        proxy?: any;
-        locationContextEnabled?: boolean;
-        handlesAlerts?: boolean;
-        platform?: string;
-        loggingPrefs?: {
-            browser: string;
-            driver: string;
-        };
-    }
+    export type DesiredCapabilities = any;
 
-    export interface IRemoteOptions {
+    export interface RemoteOptions {
         protocol?: string;
         waitforTimeout?: number;
         waitforInterval?: number;
         coloredLogs?: boolean;
         logLevel?: string;
         baseUrl?: string;
-        desiredCapabilities?: IDesiredCapabilities;
+        desiredCapabilities?: DesiredCapabilities;
     }
 
-    export interface IMultiremoteOptions {
-        [key: string]: IRemoteOptions;
+    export interface MultiremoteOptions {
+        [key: string]: RemoteOptions;
     }
 
-    export function remote(options?: IRemoteOptions | string): IClient<void>;
+    export function remote(options?: RemoteOptions | string): Client<void>;
 
-    export function multiremote(options?: IMultiremoteOptions): IClient<void>;
+    export function multiremote(options?: MultiremoteOptions): Client<void>;
 }
 
-declare var browser: WebdriverIO.IClient<void>;
+declare var browser: WebdriverIO.Client<void>;
 
 declare module "webdriverio" {
     export = WebdriverIO;

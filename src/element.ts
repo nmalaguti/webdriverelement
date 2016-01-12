@@ -7,9 +7,9 @@ import getPathWrapper from "./getPathWrapper";
 
 export default class Element {
 
-    public static client: WebdriverIO.IClient<void>;
+    public static client: WebdriverIO.Client<void>;
 
-    constructor(public elementId: WebdriverIO.IElementId) {}
+    constructor(public elementId: WebdriverIO.ElementId) {}
 
     public clear() {
         return Promise.resolve(Element.client.elementIdClear(this.elementId));
@@ -159,7 +159,7 @@ export default class Element {
         return Promise.resolve(Element.client.submit(this.elementId));
     }
 
-    private unpack<T>(promise: WebdriverIO.IClient<WebdriverIO.IRawResult<T>>) {
+    private unpack<T>(promise: WebdriverIO.Client<WebdriverIO.RawResult<T>>) {
         return Promise.resolve(promise).then((result) => {
             return result.value;
         });

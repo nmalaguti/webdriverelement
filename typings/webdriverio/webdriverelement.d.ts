@@ -6,16 +6,16 @@
 /// <reference path="webdriverio.d.ts"/>
 
 declare namespace WebdriverIO {
-    export interface IClient<T> {
+    export interface Client<T> {
         findElement(selector: string): Promise<Element>;
         findElements(selector: string): Promise<Element[]>;
         findActiveElement(): Promise<Element>;
     }
 
     export class Element {
-        public static client: IClient<void>;
-        public elementId: IElementId;
-        public constructor(elementId: IElementId);
+        public static client: Client<void>;
+        public elementId: ElementId;
+        public constructor(elementId: ElementId);
         public clear(): Promise<void>;
         public click(): Promise<void>;
         public doubleClick(): Promise<void>;
@@ -27,11 +27,11 @@ declare namespace WebdriverIO {
         public getAttribute(attributeName: string): Promise<string>;
         public getCssProperty(propertyName: string): Promise<string>;
         public getHTML(includeSelectorTag?: boolean): Promise<string>;
-        public getLocation(): Promise<ILocation>;
-        public getLocationInView(): Promise<ILocation>;
+        public getLocation(): Promise<Location>;
+        public getLocationInView(): Promise<Location>;
         public getParent(): Promise<Element>;
         public getSelector(): Promise<string>;
-        public getSize(): Promise<ISize>;
+        public getSize(): Promise<Size>;
         public getTagName(): Promise<string>;
         public getText(): Promise<string>;
         public getValue(): Promise<string>;
